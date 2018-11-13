@@ -1,4 +1,4 @@
-package com.example.demo.controlers;
+package com.example.demo.controllers;
 
 import java.util.ArrayList;
 
