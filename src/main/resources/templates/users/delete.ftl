@@ -14,10 +14,12 @@
 <#if users??>
 <#assign index = 0>
 <form action="/users/deletecriteria" method="POST">
+    <div class="row">
+        <div class="col-md-6">Firstname</div>
+        <div class="col-md-6">Lastname</div>
+    </div>
     <#list users as u>
-    <input type="hidden" readonly name="users[${index}].id" value="<#if u?? && u.getId()??>${u.getId()}<#else>null</#if>">
-    <input type="text" readonly name="users[${index}].firstname" value="<#if u?? && u.getFirstname()??>${u.getFirstname()}<#else>null</#if>">
-    <input type="text" readonly name="users[${index}].lastname" value="<#if u?? && u.getLastname()??>${u.getLastname()}<#else>null</#if>"> 
+    <#include "noteditableform.ftl"/>
     <#assign index++>
     </#list>
     <input type="submit" value="Delete">
