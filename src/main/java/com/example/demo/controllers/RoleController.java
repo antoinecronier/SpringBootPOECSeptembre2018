@@ -10,95 +10,94 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.dtos.UserDeleteCriteriaDTO;
-import com.example.demo.models.User;
-import com.example.demo.services.UserService;
+import com.example.demo.dtos.RoleDeleteCriteriaDTO;
+import com.example.demo.models.Role;
+import com.example.demo.services.RoleService;
 
 @Controller
-@RequestMapping("/users")
-public class UserController {
-	
+@RequestMapping("/roles")
+public class RoleController {
 	@Autowired
-	private UserService userService;
+	private RoleService roleService;
 
 	@RequestMapping(value= {"","/","/index"}, method=RequestMethod.GET)
 	public String index(Model model) {
-		model.addAttribute("users",this.userService.findAll());
+		model.addAttribute("roles",this.roleService.findAll());
 		model.addAttribute("pageName","Users index");
-		return "users/index";
+		return "roles/index";
 	}
 	
 	@RequestMapping(value= {"/delete/{id}"}, method=RequestMethod.GET)
 	public String deleteId(Model model, @PathVariable Integer id) {
-		this.userService.deleteById(id);
-		return "redirect:/users/index";
+		this.roleService.deleteById(id);
+		return "redirect:/roles/index";
 	}
 	
 	@RequestMapping(value= {"/delete"}, method=RequestMethod.GET)
 	public String deleteCriteria(Model model) {
 		model.addAttribute("pageName","Users deletion criteria");
-		return "users/delete";
+		return "roles/delete";
 	}
 	
 	@RequestMapping(value= {"/delete"}, method=RequestMethod.POST)
-	public String deleteCriteriaSearch(Model model, @ModelAttribute User user) {
-		List<User> users = this.userService.findWithCriteria(user);
-		if (users.size() > 0) {
-			model.addAttribute("users",users);
+	public String deleteCriteriaSearch(Model model, @ModelAttribute Role role) {
+		List<Role> roles = this.roleService.findWithCriteria(role);
+		if (roles.size() > 0) {
+			model.addAttribute("roles",roles);
 		}else {
 			model.addAttribute("notFound","No match");
 		}
 		
 		model.addAttribute("pageName","Users deletion criteria");
-		return "users/delete";
+		return "roles/delete";
 	}
 	
 	@RequestMapping(value= {"/deletecriteria"}, method=RequestMethod.POST)
-	public String deleteCriteriaDelete(@ModelAttribute UserDeleteCriteriaDTO form) {
-		this.userService.delete(form.getUsers());
-		return "redirect:/users/delete";
+	public String deleteCriteriaDelete(@ModelAttribute RoleDeleteCriteriaDTO form) {
+		this.roleService.delete(form.getRoles());
+		return "redirect:/roles/delete";
 	}
 	
 	@RequestMapping(value= {"/find"}, method=RequestMethod.GET)
 	public String findCriteria(Model model) {
 		model.addAttribute("pageName","Users find criteria");
-		return "users/find";
+		return "roles/find";
 	}
 	
 	@RequestMapping(value= {"/find"}, method=RequestMethod.POST)
-	public String findCriteriaSearch(Model model, @ModelAttribute User user) {
-		List<User> users = this.userService.findWithCriteria(user);
-		if (users.size() > 0) {
-			model.addAttribute("users",users);
+	public String findCriteriaSearch(Model model, @ModelAttribute Role role) {
+		List<Role> roles = this.roleService.findWithCriteria(role);
+		if (roles.size() > 0) {
+			model.addAttribute("roles",roles);
 		}else {
 			model.addAttribute("notFound","No match");
 		}
 		
 		model.addAttribute("pageName","Users find criteria");
-		return "users/find";
+		return "roles/find";
 	}
 	
 	@RequestMapping(value= {"/edit"}, method=RequestMethod.GET)
 	public String create(Model model) {
-		model.addAttribute("pageName","User create");
-		return "users/edit";
+		model.addAttribute("pageName","Role create");
+		return "roles/edit";
 	}
 	
 	@RequestMapping(value= {"/edit/{id}"}, method=RequestMethod.GET)
 	public String edit(Model model, @PathVariable Integer id) {
-		model.addAttribute("user",this.userService.find(id).get());
-		model.addAttribute("pageName","User edit");
-		return "users/edit";
+		model.addAttribute("role",this.roleService.find(id).get());
+		model.addAttribute("pageName","Role edit");
+		return "roles/edit";
 	}
 	
 	@RequestMapping(value= {"/edit"}, method=RequestMethod.POST)
-	public String editSave(@ModelAttribute User user) {
-		this.userService.save(user);
-		return "redirect:/users/index";
+	public String editSave(@ModelAttribute Role role) {
+		this.roleService.save(role);
+		return "redirect:/roles/index";
 	}
 	
 	@RequestMapping(value= {"/edit"}, method=RequestMethod.DELETE)
 	public String editDelete() {
-		return "redirect:/users/index";
+		return "redirect:/roles/index";
 	}
 }
