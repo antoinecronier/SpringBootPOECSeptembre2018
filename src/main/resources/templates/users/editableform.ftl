@@ -9,7 +9,7 @@
     </#if>
 </#if>
     <div>Firstname</div>
-    <input type="text" name="firstname" value="<#if user?? && user.getLastname()??>${user.getFirstname()}</#if>">
+    <input type="text" name="firstname" value="<#if user?? && user.getFirstname()??>${user.getFirstname()}</#if>">
     <div>Lastname</div>
     <input type="text" name="lastname" value="<#if user?? && user.getLastname()??>${user.getLastname()}</#if>">
     <div><input type="submit" value="Save"></div>

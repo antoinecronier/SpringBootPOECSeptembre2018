@@ -1,23 +1,8 @@
 package com.example.demo.dtos;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.example.demo.dtos.base.BaseDeleteCriteriaDTO;
 import com.example.demo.models.Role;
 
-public class RoleDeleteCriteriaDTO {
+public class RoleDeleteCriteriaDTO extends BaseDeleteCriteriaDTO<Role> {
 
-	List<Role> roles;
-
-	public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setUsers(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	public RoleDeleteCriteriaDTO() {
-		this.roles = new ArrayList<Role>();
-	}
 }

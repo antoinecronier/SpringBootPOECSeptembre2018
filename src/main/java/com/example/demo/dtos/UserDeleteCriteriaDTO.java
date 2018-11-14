@@ -1,23 +1,8 @@
 package com.example.demo.dtos;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.example.demo.dtos.base.BaseDeleteCriteriaDTO;
 import com.example.demo.models.User;
 
-public class UserDeleteCriteriaDTO {
+public class UserDeleteCriteriaDTO extends BaseDeleteCriteriaDTO<User> {
 
-	List<User> users;
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public UserDeleteCriteriaDTO() {
-		this.users = new ArrayList<User>();
-	}
 }
