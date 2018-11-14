@@ -10,7 +10,7 @@
 <div>
 <#if items??>
     <#list items as i>
-        <#include "${detailPath}/specific/show.ftl"/>
+        <#include "..${detailPath}/specific/show.ftl"/>
     </#list>
 </#if>
 <#if notFound??>

@@ -1,2 +1,2 @@
-<input type="hidden" readonly name="roles[${index}].id" value="<#if i?? && i.getId()??>${i.getId()}<#else>null</#if>">
-<input type="text" readonly name="roles[${index}].firstname" value="<#if i?? && i.getName()??>${i.getName()}<#else>null</#if>">
+<input type="hidden" readonly name="items[${index}].id" value="<#if i?? && i.getId()??>${i.getId()}<#else>null</#if>">
+<input type="text" readonly name="items[${index}].name" value="<#if i?? && i.getName()??>${i.getName()}<#else>null</#if>">
