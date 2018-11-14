@@ -25,6 +25,7 @@ public abstract class BaseController<T extends DBItem> {
 	public String index(Model model) {
 		model.addAttribute(BASE_ATTRIBUT_LIST,this.getBaseService().findAll());
 		model.addAttribute("pageName",this.getBasePageName()+" index");
+		model.addAttribute("detailPath",this.getBaseURL());
 		return this.getBaseURL()+"/index";
 	}
 	
@@ -37,6 +38,7 @@ public abstract class BaseController<T extends DBItem> {
 	@RequestMapping(value= {"/delete"}, method=RequestMethod.GET)
 	public String deleteCriteria(Model model) {
 		model.addAttribute("pageName",this.getBasePageName()+" deletion criteria");
+		model.addAttribute("detailPath",this.getBaseURL());
 		return this.getBaseURL()+"/delete";
 	}
 	
@@ -50,6 +52,7 @@ public abstract class BaseController<T extends DBItem> {
 		}
 		
 		model.addAttribute("pageName",this.getBasePageName()+" deletion criteria");
+		model.addAttribute("detailPath",this.getBaseURL());
 		return this.getBaseURL()+"/delete";
 	}
 	
@@ -62,6 +65,7 @@ public abstract class BaseController<T extends DBItem> {
 	@RequestMapping(value= {"/find"}, method=RequestMethod.GET)
 	public String findCriteria(Model model) {
 		model.addAttribute("pageName",this.getBasePageName()+" find criteria");
+		model.addAttribute("detailPath",this.getBaseURL());
 		return this.getBaseURL()+"/find";
 	}
 	
@@ -75,12 +79,14 @@ public abstract class BaseController<T extends DBItem> {
 		}
 		
 		model.addAttribute("pageName",this.getBasePageName()+" find criteria");
+		model.addAttribute("detailPath",this.getBaseURL());
 		return this.getBaseURL()+"/find";
 	}
 	
 	@RequestMapping(value= {"/edit"}, method=RequestMethod.GET)
 	public String create(Model model) {
 		model.addAttribute("pageName",this.getBasePageName()+" create");
+		model.addAttribute("detailPath",this.getBaseURL());
 		return this.getBaseURL()+"/edit";
 	}
 	
@@ -88,6 +94,7 @@ public abstract class BaseController<T extends DBItem> {
 	public String edit(Model model, @PathVariable Integer id) {
 		model.addAttribute(BASE_ATTRIBUT,this.getBaseService().find(id).get());
 		model.addAttribute("pageName",this.getBasePageName()+" edit");
+		model.addAttribute("detailPath",this.getBaseURL());
 		return this.getBaseURL()+"/edit";
 	}
 	

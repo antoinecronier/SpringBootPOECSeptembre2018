@@ -2,24 +2,17 @@
 <#include "../utils/bootstrap.ftl"/>
 <h1>${pageName}</h1>
 
-<form action="/users/delete" method="POST">
-    <div>Firstname</div>
-    <input type="text" name="firstname" value="">
-    <div>Lastname</div>
-    <input type="text" name="lastname" value="">
-    <input type="submit" value="Search">
+<form action="${detailPath}/delete" method="POST">
+<#include "..${detailPath}/specific/emptyshowform.ftl"/>
+<input type="submit" value="Search">
 </form> 
 
 <div>
-<#if users??>
+<#if items??>
 <#assign index = 0>
-<form action="/users/deletecriteria" method="POST">
-    <div class="row">
-        <div class="col-md-6">Firstname</div>
-        <div class="col-md-6">Lastname</div>
-    </div>
-    <#list users as u>
-    <#include "noteditableform.ftl"/>
+<form action="${detailPath}/deletecriteria" method="POST">
+    <#list items as i>
+    <#include "..${detailPath}/specific/noteditableform.ftl"/>
     <#assign index++>
     </#list>
     <input type="submit" value="Delete">
@@ -30,4 +23,4 @@
 </#if>
 </div>
 
-<div><a href="/users/index">Back</a></div>
+<div><a href="${detailPath}/index">Back</a></div>

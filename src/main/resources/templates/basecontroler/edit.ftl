@@ -2,9 +2,9 @@
 <#include "../utils/bootstrap.ftl"/>
 <h1>${pageName}</h1>
 <div>
-<#include "editableform.ftl"/>
-<#if user?? && user.getId()??>
-	<div><a href="/users/delete/${user.getId()}">Delete</a></div>
+<#include "..${detailPath}/specific/editableform.ftl"/>
+<#if item?? && item.getId()??>
+	<div><a href="${detailPath}/delete/${item.getId()}">Delete</a></div>
 </#if>
 </div>
-<div><a href="/users/index">Back</a></div>
+<div><a href="${detailPath}/index">Back</a></div>
