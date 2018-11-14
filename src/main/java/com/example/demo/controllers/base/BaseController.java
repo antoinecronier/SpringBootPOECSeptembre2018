@@ -20,6 +20,8 @@ public abstract class BaseController<T extends DBItem> {
 	protected abstract BaseService<T> getBaseService();
 	protected abstract String getBaseURL();
 	protected abstract String getBasePageName();
+	protected abstract void setOtherAttributes(Model model);
+	protected abstract void setupOtherFields(T item);
 
 	@RequestMapping(value= {"","/","/index"}, method=RequestMethod.GET)
 	public String index(Model model) {
@@ -87,6 +89,7 @@ public abstract class BaseController<T extends DBItem> {
 	public String create(Model model) {
 		model.addAttribute("pageName",this.getBasePageName()+" create");
 		model.addAttribute("detailPath",this.getBaseURL());
+		this.setOtherAttributes(model);
 		return this.getBaseURL()+"/edit";
 	}
 	
@@ -100,6 +103,7 @@ public abstract class BaseController<T extends DBItem> {
 	
 	@RequestMapping(value= {"/edit"}, method=RequestMethod.POST)
 	public String editSave(@ModelAttribute T item) {
+		//this.setupOtherFields(item);
 		this.getBaseService().save(item);
 		return "redirect:"+this.getBaseURL()+"/index";
 	}

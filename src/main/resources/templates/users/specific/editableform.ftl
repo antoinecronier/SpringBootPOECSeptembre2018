@@ -12,5 +12,13 @@
     <input type="text" name="firstname" value="<#if item?? && item.getFirstname()??>${item.getFirstname()}</#if>">
     <div>Lastname</div>
     <input type="text" name="lastname" value="<#if item?? && item.getLastname()??>${item.getLastname()}</#if>">
+    
+    <#if roles??>
+    <select name="role">
+        <#list roles as r>
+            <option value=${r.getId()}>${r.getName()}</option>
+        </#list>
+    </select>
+    </#if>
     <div><input type="submit" value="Save"></div>
 </form> 

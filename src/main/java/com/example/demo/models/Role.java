@@ -1,7 +1,12 @@
 package com.example.demo.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.demo.database.DBItem;
@@ -12,6 +17,9 @@ public class Role extends DBItem {
 
 	@Column(name="name")
 	private String name;
+	
+	@OneToMany(targetEntity=User.class,mappedBy="role")
+	private List<User> users;
 
 	public String getName() {
 		return name;
@@ -22,11 +30,12 @@ public class Role extends DBItem {
 	}
 
 	public Role(String name) {
-		super();
+		this();
 		this.name = name;
 	}
 	
 	public Role() {
 		super();
+		this.users = new ArrayList<User>();
 	}
 }

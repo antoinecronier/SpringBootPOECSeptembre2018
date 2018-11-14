@@ -41,5 +41,17 @@ public class RoleController extends BaseController<Role> {
 		return BASE_PAGE_NAME;
 	}
 
+	@Override
+	protected void setOtherAttributes(Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setupOtherFields(Role item) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
