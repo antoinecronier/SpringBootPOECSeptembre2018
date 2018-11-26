@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.demo.database.DBItem;
@@ -18,7 +17,7 @@ public class Role extends DBItem {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(targetEntity=User.class,mappedBy="roles")
+	@ManyToMany(targetEntity=User.class,mappedBy="roles")
 	private List<User> users;
 
 	public String getName() {

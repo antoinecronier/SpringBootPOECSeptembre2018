@@ -6,9 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -20,19 +17,23 @@ import com.example.demo.database.DBItem;
 @Entity
 @Table(name = "user")
 public class User extends DBItem {
-	
+
 //	/**
 //	 * Security part
 //	 */
-	@Column(name = "email",unique=true)
-    @Email(message = "*Please provide a valid Email")
-    @NotEmpty(message = "*Please provide an email")
-    private String email;
-    @Column(name = "password")
-    @Length(min = 5, message = "*Your password must have at least 5 characters")
-    @NotEmpty(message = "*Please provide your password")
-    private String password;
-	
+	@Column(name = "email", unique = true)
+	@Email(message = "*Please provide a valid Email")
+	@NotEmpty(message = "*Please provide an email")
+	private String email;
+
+	@Column(name = "password")
+	@Length(min = 5, message = "*Your password must have at least 5 characters")
+	@NotEmpty(message = "*Please provide your password")
+	private String password;
+
+	@Column(name = "active")
+	private int active;
+
 //	/**
 //	 * Standard part
 //	 */
@@ -83,6 +84,14 @@ public class User extends DBItem {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public int getActive() {
+		return active;
+	}
+
+	public void setActive(int active) {
+		this.active = active;
 	}
 
 	public User(String firstname, String lastname) {
