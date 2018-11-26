@@ -94,6 +94,15 @@ public class User extends DBItem {
 		this.active = active;
 	}
 
+	public User(String email, String password, int active, String firstname, String lastname) {
+		this();
+		this.email = email;
+		this.password = password;
+		this.active = active;
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+
 	public User(String firstname, String lastname) {
 		this();
 		this.firstname = firstname;
