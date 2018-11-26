@@ -10,21 +10,40 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.example.demo.database.DBItem;
 
 @Entity
 @Table(name = "user")
 public class User extends DBItem {
-
+	
+//	/**
+//	 * Security part
+//	 */
+	@Column(name = "email",unique=true)
+    @Email(message = "*Please provide a valid Email")
+    @NotEmpty(message = "*Please provide an email")
+    private String email;
+    @Column(name = "password")
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @NotEmpty(message = "*Please provide your password")
+    private String password;
+	
+//	/**
+//	 * Standard part
+//	 */
 	@Column(name = "firstname")
 	private String firstname;
 
 	@Column(name = "lastname")
 	private String lastname;
 
-	@ManyToOne()
-	private Role role;
+	@ManyToMany()
+	private List<Role> roles;
 
 	public String getFirstname() {
 		return firstname;
@@ -42,12 +61,28 @@ public class User extends DBItem {
 		this.lastname = lastname;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	public User(String firstname, String lastname) {
@@ -58,5 +93,6 @@ public class User extends DBItem {
 
 	public User() {
 		super();
+		this.roles = new ArrayList<Role>();
 	}
 }

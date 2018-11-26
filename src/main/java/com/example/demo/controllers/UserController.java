@@ -50,6 +50,6 @@ public class UserController extends BaseController<User> {
 
 	@Override
 	protected void setupOtherFields(User item) {
-		item.setRole(serviceRole.find(item.getRole().getId()).get());
+		//item.setRole(serviceRole.find(item.getRole().getId()).get());
 	}
 }

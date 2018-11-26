@@ -18,7 +18,7 @@ public class Role extends DBItem {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(targetEntity=User.class,mappedBy="role")
+	@OneToMany(targetEntity=User.class,mappedBy="roles")
 	private List<User> users;
 
 	public String getName() {

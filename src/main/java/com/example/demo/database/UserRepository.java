@@ -10,6 +10,7 @@ import com.example.demo.models.User;
 @org.springframework.stereotype.Repository
 public interface UserRepository extends BaseCRUDRepository<User> {
 
+	User findByEmail(String email);
 	List<User> findByFirstname(String firstname);
 	List<User> findByLastname(String lastname);
 	List<User> findByFirstnameAndLastname(String firstname, String lastname);

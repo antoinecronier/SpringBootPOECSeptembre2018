@@ -1,7 +1,9 @@
 package com.example.demo.security.configurations;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -29,4 +31,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 				.httpBasic();
 	}
 
+//	@Bean
+//	public AuthenticationManager customAuthenticationManager() throws Exception {
+//	  return authenticationManager();
+//	}
 }
