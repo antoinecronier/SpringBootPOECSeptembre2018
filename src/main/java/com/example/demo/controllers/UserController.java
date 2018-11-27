@@ -39,7 +39,7 @@ public class UserController extends BaseController<User> {
 	protected String getBasePageName() {
 		return BASE_PAGE_NAME;
 	}
-	
+
 	@Autowired
 	RoleService serviceRole;
 

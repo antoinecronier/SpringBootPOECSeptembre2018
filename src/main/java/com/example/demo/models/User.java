@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.example.demo.converter.CryptoConverter;
 import com.example.demo.database.DBItem;
 
 @Entity
@@ -29,6 +31,7 @@ public class User extends DBItem {
 	@Column(name = "password")
 	@Length(min = 5, message = "*Your password must have at least 5 characters")
 	@NotEmpty(message = "*Please provide your password")
+	@Convert(converter=CryptoConverter.class)
 	private String password;
 
 	@Column(name = "active")

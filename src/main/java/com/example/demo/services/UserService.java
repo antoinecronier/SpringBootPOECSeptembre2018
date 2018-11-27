@@ -21,12 +21,12 @@ public class UserService extends BaseService<User> {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+//	@Autowired
+//	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public void save(User item) {
-		item.setPassword(bCryptPasswordEncoder.encode(item.getPassword()));
+		//item.setPassword(bCryptPasswordEncoder.encode(item.getPassword()));
 		item.setActive(1);
 		super.save(item);
 	}
