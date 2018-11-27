@@ -1,17 +1,11 @@
 package com.example.demo.services;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.database.UserRepository;
 import com.example.demo.database.base.BaseCRUDRepository;
-import com.example.demo.models.Role;
 import com.example.demo.models.User;
 import com.example.demo.services.base.BaseService;
 
@@ -46,5 +40,9 @@ public class UserService extends BaseService<User> {
 			result = this.userRepository.findByLastname(item.getLastname());
 		}
 		return result;
+	}
+	
+	public User findByEmail(String email) {
+		return this.userRepository.findByEmail(email);
 	}
 }

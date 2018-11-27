@@ -7,6 +7,8 @@
  <link rel="stylesheet" type="text/css" 
     href="<@spring.url '/css/default.css'/>"/>
      
+<a href="/logout">Logout<a/>
+<a href="/registration">Register<a/>
 <h1>Coucou</h1>
 <p>Hello</p>
 aizjejoiajzeoijaziejoiazjeoijaoziejzajie

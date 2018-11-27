@@ -3,10 +3,14 @@ package com.example.demo.security.configurations;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 import com.example.demo.security.controllers.LoginController;
 
 /*
@@ -50,7 +54,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/", "/index", "/css/**", "/javascript/**")
+				.antMatchers("/", "/index", "/css/**", "/javascript/**"
+						,"/registration")
 					.permitAll()
 				//.antMatchers("/users/edit/**").access("hasRole('ROLE_ADMIN')")
 				.anyRequest()
@@ -62,8 +67,18 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 					.passwordParameter(LoginController.FORM_PASSWORD)
 					.permitAll()
 			.and()
+				.logout()
+					.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+					.logoutSuccessUrl("/login")
+			.and()
 				.httpBasic()
 		;
+	}
+	
+	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
 	}
 	
 //	@Bean

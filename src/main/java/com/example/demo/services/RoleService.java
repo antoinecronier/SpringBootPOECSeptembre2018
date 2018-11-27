@@ -23,7 +23,7 @@ public class RoleService extends BaseService<Role> {
 	@Override
 	protected List<Role> setItemsByCriterias(Role item, List<Role> result) {
 		if (!item.getName().equals("")) {
-			result = this.roleRepository.findByName(item.getName());
+			result = this.roleRepository.findAllByName(item.getName());
 		}
 		return result;
 	}
@@ -31,5 +31,9 @@ public class RoleService extends BaseService<Role> {
 	@Override
 	protected BaseCRUDRepository<Role> getCRUDRepository() {
 		return roleRepository;
+	}
+	
+	public Role findByName(String name) {
+		return this.roleRepository.findByName(name);
 	}
 }
