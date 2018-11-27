@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +35,10 @@ public class Controler1 {
 				add(new User("user4", "u4"));
 			}
 		});
+		
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+		String name = securityContext.getAuthentication().getName();
+		User user = userRepository.findByEmail(name);
 
 		return "index";
 	}
