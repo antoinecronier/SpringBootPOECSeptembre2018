@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
 
 		for (Role role : user.getRoles()) {
-			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_"+role.getName()));
 		}
 
 		String idForEncode = "bcrypt";
@@ -51,6 +51,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		userBuilder.password(passwordEncoder.encode(user.getPassword()));
 		userBuilder.authorities(grantedAuthorities);
 
-		return userBuilder.build();
+		UserDetails userD = userBuilder.build();
+		return userD;
 	}
 }

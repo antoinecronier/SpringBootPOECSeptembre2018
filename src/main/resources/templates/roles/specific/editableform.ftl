@@ -10,5 +10,8 @@
 </#if>
     <div>Name</div>
     <input type="text" name="name" value="<#if item?? && item.getName()??>${item.getName()}</#if>">
+    <input type="hidden"
+            name="${_csrf.parameterName}"
+            value="${_csrf.token}"/>
     <div><input type="submit" value="Save"></div>
 </form> 
