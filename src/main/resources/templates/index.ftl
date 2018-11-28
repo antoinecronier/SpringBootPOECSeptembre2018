@@ -7,6 +7,7 @@
  <link rel="stylesheet" type="text/css" 
     href="<@spring.url '/css/default.css'/>"/>
      
+<p>Don't forget: <#if connection??> ${connection} </#if> </p>
 <a href="/logout">Logout<a/>
 <a href="/registration">Register<a/>
 <h1>Coucou</h1>

@@ -87,7 +87,7 @@ public abstract class BaseController<T extends DBItem> {
 	}
 	
 	@Secured("ROLE_ADMIN")
-	@RequestMapping(value= {"/edit"}, method=RequestMethod.GET)
+	@RequestMapping(value= {"/edit","edit/"}, method=RequestMethod.GET)
 	public String create(Model model) {
 		model.addAttribute("pageName",this.getBasePageName()+" create");
 		model.addAttribute("detailPath",this.getBaseURL());

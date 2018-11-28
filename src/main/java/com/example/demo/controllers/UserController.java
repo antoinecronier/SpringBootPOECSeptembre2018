@@ -1,5 +1,11 @@
 package com.example.demo.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,5 +72,13 @@ public class UserController extends BaseController<User> {
 		modelAndView.addObject("connection", connection);
 		modelAndView.setViewName("/users/profil");
 		return modelAndView;
+	}
+	
+	@RequestMapping(value="/sessionitems", method= {RequestMethod.GET})
+	public String sessionItems(HttpSession session) {
+		
+		System.out.println(session.getAttribute("connection"));
+		
+		return "redirect:/";
 	}
 }

@@ -1,6 +1,11 @@
 package com.example.demo.security.configurations;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,7 +14,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.session.web.http.CookieSerializer;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 
 import com.example.demo.security.controllers.LoginController;
 
@@ -49,17 +57,29 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 //                .dataSource(dataSource)
 //                .passwordEncoder(bCryptPasswordEncoder);
 //    }
-
+	
+//	@Bean
+//    public CookieSerializer cookieSerializer() {
+//            DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+//            serializer.setCookieName("JSESSIONID"); 
+//            serializer.setCookiePath("/"); 
+//            serializer.setDomainNamePattern("^.+?\\.(\\w+\\.[a-z]+)$"); 
+//            return serializer;
+//    }
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
-				.antMatchers("/", "/index", "/css/**", "/javascript/**"
-						,"/registration")
-					.permitAll()
-				//.antMatchers("/users/edit/**").access("hasRole('ROLE_ADMIN')")
-				.anyRequest()
-					.authenticated()
+//			.sessionManagement()
+//				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//			.and()
+				.authorizeRequests()
+					.antMatchers("/", "/index", "/css/**", "/javascript/**"
+							,"/registration")
+						.permitAll()
+//					.antMatchers("/users/edit/**").access("hasRole('ROLE_ADMIN')")
+					.anyRequest()
+						.authenticated()
 			.and()
 				.formLogin()
 					.loginPage(LoginController.LOGIN)
