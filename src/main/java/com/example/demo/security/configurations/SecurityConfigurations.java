@@ -1,7 +1,11 @@
 package com.example.demo.security.configurations;
 
+import java.io.IOException;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -15,6 +19,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.session.web.http.CookieSerializer;
 import org.springframework.session.web.http.DefaultCookieSerializer;
@@ -58,15 +67,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 //                .passwordEncoder(bCryptPasswordEncoder);
 //    }
 	
-//	@Bean
-//    public CookieSerializer cookieSerializer() {
-//            DefaultCookieSerializer serializer = new DefaultCookieSerializer();
-//            serializer.setCookieName("JSESSIONID"); 
-//            serializer.setCookiePath("/"); 
-//            serializer.setDomainNamePattern("^.+?\\.(\\w+\\.[a-z]+)$"); 
-//            return serializer;
-//    }
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -75,7 +75,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 //			.and()
 				.authorizeRequests()
 					.antMatchers("/", "/index", "/css/**", "/javascript/**"
-							,"/registration")
+							,"/registration"
+							,"/errors/**")
 						.permitAll()
 //					.antMatchers("/users/edit/**").access("hasRole('ROLE_ADMIN')")
 					.anyRequest()
@@ -85,6 +86,12 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 					.loginPage(LoginController.LOGIN)
 					.usernameParameter(LoginController.FORM_USERNAME)
 					.passwordParameter(LoginController.FORM_PASSWORD)
+					.successHandler(new AuthenticationSuccessHandler() {
+					    @Override
+					    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+					            Authentication authentication) throws IOException, ServletException {
+					    	new DefaultRedirectStrategy().sendRedirect(request, response, request.getRequestURI());
+					    }})
 					.permitAll()
 			.and()
 				.logout()
