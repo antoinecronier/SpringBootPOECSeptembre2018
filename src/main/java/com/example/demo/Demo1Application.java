@@ -1,8 +1,5 @@
 package com.example.demo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,16 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
 
-import com.example.demo.models.Role;
-import com.example.demo.models.User;
 import com.example.demo.security.services.PreLaunchService;
-import com.example.demo.services.RoleService;
-import com.example.demo.services.UserService;
 
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
+@EnableJdbcHttpSession
 public class Demo1Application {
 
 	public static void main(String[] args) {
