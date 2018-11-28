@@ -18,12 +18,16 @@ public class PreLaunchService {
 	
 	public void createFirstAdmin() {
 		
-//		Role role = new Role("ADMIN");
-//		
-//		this.serviceRole.save(role);
-//		
-//		User user = new User("admin@admin.admin", "admin", 1, "antoine", "cronier");
-//		user.getRoles().add(role);
-//		this.serviceUser.save(user);
+		Role role = null;
+		if ((role = this.serviceRole.findByName("ADMIN")) == null) {
+			role = new Role("ADMIN");
+			this.serviceRole.save(role);
+		}
+		
+		User user = null;
+		if ((user = this.serviceUser.findByEmail("admin@site.com")) == null) {
+			user = new User("admin@site.com", "admin", 1, "myAdmin", "forSite");
+			this.serviceUser.save(user);
+		}
 	}
 }
