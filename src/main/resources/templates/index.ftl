@@ -10,6 +10,8 @@
 <p>Don't forget: <#if connection??> ${connection} </#if> </p>
 <a href="/logout">Logout<a/>
 <a href="/registration">Register<a/>
+<a href="/users/">Users<a/>
+<a href="/roles/">Roles<a/>
 <h1>Coucou</h1>
 <p>Hello</p>
 aizjejoiajzeoijaziejoiazjeoijaoziejzajie

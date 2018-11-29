@@ -1,6 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#include "../utils/bootstrap.ftl"/>
 <h1>${pageName}</h1>
+<div><a href="/">Home</a></div>
 <div>
 <#include "..${detailPath}/specific/editableform.ftl"/>
 <#if item?? && item.getId()??>

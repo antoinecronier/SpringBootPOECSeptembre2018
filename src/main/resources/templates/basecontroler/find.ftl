@@ -1,6 +1,7 @@
 <#import "/spring.ftl" as spring/>
 <#include "../utils/bootstrap.ftl"/>
 <h1>${pageName}</h1>
+<div><a href="/">Home</a></div>
 
 <form action="${detailPath}/find" method="POST">
 <#include "..${detailPath}/specific/emptyshowform.ftl"/>
