@@ -15,14 +15,14 @@ public class BaseCustomInterceptor
       HttpServletRequest request, 
       HttpServletResponse response, 
       Object handler) {
-    	String referer = request.getHeader("Referer");
-    	System.out.println(referer);
-    	String requestURI = request.getRequestURI();
-    	System.out.println(requestURI);
-    	Object requestURL = request.getRequestURL();
-    	System.out.println(requestURL);
-    	String pathInfo = request.getPathInfo();
-    	System.out.println(pathInfo);
+//    	String referer = request.getHeader("Referer");
+//    	System.out.println(referer);
+//    	String requestURI = request.getRequestURI();
+//    	System.out.println(requestURI);
+//    	Object requestURL = request.getRequestURL();
+//    	System.out.println(requestURL);
+//    	String pathInfo = request.getPathInfo();
+//    	System.out.println(pathInfo);
         return true;
     }
  
@@ -32,13 +32,13 @@ public class BaseCustomInterceptor
       HttpServletResponse response, 
       Object handler, 
       Exception ex) {
-    	String referer = request.getHeader("Referer");
-    	System.out.println(referer);
-    	String requestURI = request.getRequestURI();
-    	System.out.println(requestURI);
-    	Object requestURL = request.getRequestURL();
-    	System.out.println(requestURL);
-    	String pathInfo = request.getPathInfo();
-    	System.out.println(pathInfo);
+//    	String referer = request.getHeader("Referer");
+//    	System.out.println(referer);
+//    	String requestURI = request.getRequestURI();
+//    	System.out.println(requestURI);
+//    	Object requestURL = request.getRequestURL();
+//    	System.out.println(requestURL);
+//    	String pathInfo = request.getPathInfo();
+//    	System.out.println(pathInfo);
     }
 }

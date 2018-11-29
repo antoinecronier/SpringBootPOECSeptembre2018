@@ -73,7 +73,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 					.loginPage(LoginController.LOGIN)
 					.usernameParameter(LoginController.FORM_USERNAME)
 					.passwordParameter(LoginController.FORM_PASSWORD)
-					.successHandler(new CustomAuthenticationSuccessHandler())
+					//.successHandler(new CustomAuthenticationSuccessHandler())
 					.permitAll()
 			.and()
 				.logout()

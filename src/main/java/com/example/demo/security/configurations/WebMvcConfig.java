@@ -16,24 +16,24 @@ import com.example.demo.security.interceptor.ServletBaseNodeInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-	
-	@Autowired
-    private BaseCustomInterceptor baseCustomInterceptor;
- 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(baseCustomInterceptor);
-    }
-	
-	@Bean
-    public ServletRegistrationBean dispatcherRegistration() {
-        return new ServletRegistrationBean(dispatcherServlet());
-    }
-
-    @Bean(name = DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
-    public DispatcherServlet dispatcherServlet() {
-        return new ServletBaseNodeInterceptor();
-    }
+//	
+//	@Autowired
+//    private BaseCustomInterceptor baseCustomInterceptor;
+// 
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(baseCustomInterceptor);
+//    }
+//	
+//	@Bean
+//    public ServletRegistrationBean dispatcherRegistration() {
+//        return new ServletRegistrationBean(dispatcherServlet());
+//    }
+//
+//    @Bean(name = DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME)
+//    public DispatcherServlet dispatcherServlet() {
+//        return new ServletBaseNodeInterceptor();
+//    }
 
 //    @Bean
 //    public BCryptPasswordEncoder passwordEncoder() {
