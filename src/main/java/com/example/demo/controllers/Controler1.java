@@ -1,6 +1,13 @@
 package com.example.demo.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
@@ -13,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.WebUtils;
 
 import com.example.demo.database.UserRepository;
 import com.example.demo.models.User;
@@ -24,7 +32,7 @@ public class Controler1 {
 	private UserRepository userRepository;
 
 	@RequestMapping(value = { "/", "", "/toto" })
-	public String showPage1(Model model) {
+	public String showPage1(Model model, HttpServletResponse response, HttpServletRequest request) throws UnsupportedEncodingException {
 		model.addAttribute("att1", 2);
 		model.addAttribute("user", new User("jean-michel", "toto"));
 		model.addAttribute("users", new ArrayList<User>() {
@@ -39,7 +47,19 @@ public class Controler1 {
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 		String name = securityContext.getAuthentication().getName();
 		User user = userRepository.findByEmail(name);
-
+		
+		Cookie cookie = WebUtils.getCookie(request, "myCookie");
+		
+		if (cookie != null) {
+			String cookieVal = URLDecoder.decode(cookie.getValue(),"UTF-8");
+			System.out.println(cookieVal);
+			model.addAttribute("myCookie",cookie);
+		}else {
+			Cookie cookieSend = new Cookie("myCookie", URLEncoder.encode("La maman de cookie c'est bérénice","UTF-8"));
+			response.addCookie(cookieSend);
+			model.addAttribute("myCookie",cookieSend);
+		}
+		
 		return "index";
 	}
 

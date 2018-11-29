@@ -12,6 +12,9 @@
 <a href="/registration">Register<a/>
 <a href="/users/">Users<a/>
 <a href="/roles/">Roles<a/>
+
+<div><#if myCookie??>${myCookie.getValue()}</#if></div>
+
 <h1>Coucou</h1>
 <p>Hello</p>
 aizjejoiajzeoijaziejoiazjeoijaoziejzajie
