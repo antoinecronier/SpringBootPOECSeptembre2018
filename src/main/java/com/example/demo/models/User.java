@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -46,7 +47,7 @@ public class User extends DBItem {
 	@Column(name = "lastname")
 	private String lastname;
 
-	@ManyToMany()
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Role> roles;
 
 	public String getFirstname() {

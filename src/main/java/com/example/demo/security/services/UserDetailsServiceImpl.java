@@ -18,6 +18,7 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.database.RoleRepository;
 import com.example.demo.database.UserRepository;
 import com.example.demo.models.Role;
 import com.example.demo.models.User;
@@ -61,7 +62,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	AuthenticationManager authenticationManager;
 	
-	public void autologin(String username, String password) {
+	public UsernamePasswordAuthenticationToken autologin(String username, String password) {
         UserDetails userDetails = this.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
@@ -70,5 +71,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (usernamePasswordAuthenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         }
+        
+        return usernamePasswordAuthenticationToken;
     }
 }

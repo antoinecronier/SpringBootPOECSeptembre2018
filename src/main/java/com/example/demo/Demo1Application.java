@@ -31,6 +31,7 @@ public class Demo1Application {
         return new CommandLineRunner() {
 			public void run(String... args) throws Exception {
 				service.createFirstAdmin();
+				service.insertSessionDatabaseItems();
 			}
 		};
     }
